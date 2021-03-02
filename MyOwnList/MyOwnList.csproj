@@ -119,12 +119,12 @@
     <Compile Include="master_page.Master.designer.cs">
       <DependentUpon>master_page.Master</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Models\FSA.cs" />
-    <Compile Include="Classes\Models\FSACategory.cs" />
-    <Compile Include="Classes\Models\FSAComment.cs" />
-    <Compile Include="Classes\Models\FSAList.cs" />
-    <Compile Include="Classes\Models\ShopCart.cs" />
-    <Compile Include="Classes\Models\User.cs" />
+    <Compile Include="Models\FSA.cs" />
+    <Compile Include="Models\FSACategory.cs" />
+    <Compile Include="Models\FSAComment.cs" />
+    <Compile Include="Models\FSAList.cs" />
+    <Compile Include="Models\ShopCart.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\ReCaptcha.cs" />
     <Compile Include="Classes\UserLogin.cs" />
