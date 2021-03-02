@@ -1,0 +1,55 @@
+﻿/*Para evitar que o conteúdo da página fique parcialmente escondido
+    pela navbar
+*/
+body {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+/*Para formatar o rodapé do aviso dos cookies*/
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: gray;
+    color: white;
+    text-align: center;
+}
+/*Para o gráfico do dashboard*/
+.ct-label {
+    color: white;
+    fill: white;
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
+/*CSS MyOwnList - M17AB*/
+.divRegister {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.auth_divs {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 3vw;
+    padding-right: 7vw;
+    justify-content: center;
+}
+.divLogin {
+    height:70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.body {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.auth_button{
+    display:flex;
+    justify-self: flex-end;
+
+}

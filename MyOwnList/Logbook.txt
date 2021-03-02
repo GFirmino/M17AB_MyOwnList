@@ -1,0 +1,107 @@
+﻿/*
+Tema: Filmes, Séries e Animes (PAP)
+
+Site com dois perfis:
+	- User (0)
+	- Admin (1)
+
+Tabelas:
+	- users (Todos os dados dos utilizadores)
+	- categoriesfsa (Informação sobre as categorias para os filmes/séries/animes)
+	- datafsa (Informação sobre os filmes/séries/animes)
+	- fsa_comments (Comentários nos filmes/séries/animes) : Apenas com o FSA na lista é que se poderá comentar.
+	- userfsa_regs (Lista pessoal dos filmes/séries/animes) : Será registado aqui os FSA's onde o utilizador tem subscrição.
+	- shop_cart (Carrinho de compras)
+
+Indexes:
+	- iusername_users
+	- iname_categoriesfsa
+	- iname_datafsa
+
+Ideias a implementar:
+	- Sistema de subscrição de cada Filme/Série/Anime (FSA), adicionando, após a subscrição, 
+	  à lista pessoal. [Pagamento único (subscrição em x FSA apenas uma vez por conta, ou seja, sem data limite)]
+	- Apenas utilizadores com subscrição em x FSA poderá comentar no mesmo.
+	- Apenas utilizadores com subscrição em x FSA poderá avaliar o mesmo.
+	- Enviar emails automáticos com novidades (se houver tempo)
+	- Pagamento eletrónico (se houver tempo)
+
+INFO:
+	- Eliminar uma tabela a qual outras dependem eliminará todos os registos dessa tabela (sem on delete cascade).
+*/
+
+/*-- Script de Implementação --*/
+
+create table users(
+	iduser int identity primary key,
+    username varchar(20) not null check(len(username) >= 3 and len(username) <= 20),
+	email varchar(100) not null check(email like '%@%.%'),
+    password varchar(255) not null check(len(password) >= 6 and len(password) <= 255),
+    profiletype int default(0),
+	isdarkmode bit default(0),
+	issuspended bit default(0),
+	recuplink varchar(36),
+	recupdate date,
+    created datetime default(getdate()),
+    lastupdate datetime default(getdate())
+)
+create table categoriesfsa(
+	idcategory int identity primary key,
+	name varchar(20) not null check(len(name) >= 3 and len(name) <= 20),
+	description varchar(255) check(len(description) <= 255),
+    created datetime default(getdate()),
+	lastupdate datetime default(getdate())
+)
+create table datafsa(
+	idfsa int identity,
+	typefsa int not null,
+	idcategory int not null references categoriesfsa(idcategory) ON DELETE CASCADE,
+    name varchar(100) not null check(len(name) >= 2 and len(name) <= 100),
+	description varchar(255) check(len(description) > 0 and len(description) <= 255),
+	duration int default(0),
+	rating int,
+	numeps int default(1),
+	numseasons int default(1),
+    created datetime default(getdate()),
+    lastupdate datetime default(getdate()),
+	constraint pk_datafsa primary key (idfsa, typefsa)
+)
+create table fsa_comments(
+	idcommentfsa int identity primary key,
+	iduser int references users(iduser) ON DELETE CASCADE,
+	idfsa int not null,
+	typefsa int not null,
+	message text,
+	isactive bit default(1),
+	pathimage varchar(max),
+    created datetime default(getdate()),
+    lastupdate datetime default(getdate()),
+	foreign key (idfsa, typefsa) references datafsa(idfsa, typefsa) ON DELETE CASCADE
+)
+create table userfsa_regs(
+	idreg int identity primary key,
+	iduser int not null references users(iduser) ON DELETE CASCADE,
+	idfsa int not null,
+	typefsa int not null,
+	personalrating int,
+	watchedeps int default(0),
+	statusfsa int,
+	favorite bit default(0),
+    created datetime default(getdate()),
+    lastupdate datetime default(getdate()),
+	foreign key (idfsa, typefsa) references datafsa(idfsa, typefsa) ON DELETE CASCADE
+)
+create table shop_cart(
+	idcart int identity primary key,
+	iduser int not null references users(iduser) ON DELETE CASCADE,
+	idfsa int not null,
+	typefsa int not null,
+	quantity int default(1) check (quantity > 1),
+	created datetime default(getdate()),
+	foreign key (idfsa, typefsa) references datafsa(idfsa, typefsa) ON DELETE CASCADE
+)
+create index iusername_users on users(username)
+create index iname_categoriesfsa on categoriesfsa(name)
+create index iname_datafsa on datafsa(name)
+
+INSERT INTO users(username, email, password, profiletype) VALUES ('Firmino', 'galpfirmino@gmail.com', HASHBYTES('SHA2_512','Administrator01'), 1)
