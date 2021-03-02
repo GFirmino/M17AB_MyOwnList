@@ -76,21 +76,9 @@
     <Content Include="Auth\login.aspx" />
     <Content Include="Public\chartistJS\chartist.css" />
     <Content Include="Public\chartistJS\chartist.js" />
-    <Content Include="Public\css\bootstrap-grid.css" />
-    <Content Include="Public\css\bootstrap-grid.min.css" />
-    <Content Include="Public\css\bootstrap-reboot.css" />
-    <Content Include="Public\css\bootstrap-reboot.min.css" />
-    <Content Include="Public\css\bootstrap.css" />
-    <Content Include="Public\css\bootstrap.min.css" />
     <Content Include="Public\css\css.css" />
     <Content Include="Public\Images\Site\logo.png" />
-    <Content Include="Public\js\bootstrap.bundle.js" />
-    <Content Include="Public\js\bootstrap.bundle.min.js" />
-    <Content Include="Public\js\bootstrap.js" />
-    <Content Include="Public\js\bootstrap.min.js" />
     <Content Include="Public\js\codigo.js" />
-    <Content Include="Public\js\jquery.min.js" />
-    <Content Include="Public\js\popper.min.js" />
     <Content Include="Auth\register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -140,16 +128,6 @@
     <Content Include="master_page.Master" />
     <None Include="packages.config" />
     <Content Include="Public\chartistJS\chartist.css.map" />
-    <Content Include="Public\css\bootstrap-grid.css.map" />
-    <Content Include="Public\css\bootstrap-grid.min.css.map" />
-    <Content Include="Public\css\bootstrap-reboot.css.map" />
-    <Content Include="Public\css\bootstrap-reboot.min.css.map" />
-    <Content Include="Public\css\bootstrap.css.map" />
-    <Content Include="Public\css\bootstrap.min.css.map" />
-    <Content Include="Public\js\bootstrap.bundle.js.map" />
-    <Content Include="Public\js\bootstrap.bundle.min.js.map" />
-    <Content Include="Public\js\bootstrap.js.map" />
-    <Content Include="Public\js\bootstrap.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
